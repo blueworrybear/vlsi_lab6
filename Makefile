@@ -1,5 +1,5 @@
 VLOG	= ncverilog
-SRC		= header.h \
+SRC		= header.v \
           alu.v \
           shifter.v \
           fu.v \
@@ -18,7 +18,6 @@ DBFILE	= *.fsdb *.vcd *.bak *.mr *.syn *.pvl *.sdf.X novas* *.svf *~
 RM		= -rm -rf
 all :: sim
 sim :
-		git pull
 		@if [ '$(PATTERN)' == '' ] ; then \
 			echo -e '\033[31m Warning: Make sure you have load all files required.\033[0m'; \
 		else \
