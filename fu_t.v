@@ -47,6 +47,8 @@ module stimulus;
     #(cyc/2) rst_n = 1;
     #(cyc) data_a = 16'b1; data_b = 16'b1; op = 5'b00100;
     #(cyc) data_a = 16'b10; data_b = 16'b1; op = 5'b00100;
+    #(cyc) data_a = 16'b0111111111111111; data_b = 16'b1; op = 5'b00100;
+    #(cyc) data_a = 16'b1111111111111111; data_b = 16'b1111111111111110; op = 5'b00100;
 
     #(cyc*8);    
     $finish;
