@@ -27,7 +27,7 @@ module fu #(parameter OPSIZE = 5, parameter DSIZE = 16)(
   	.clk(clk)
   );
 
-  always @(posedge clk or negedge rst_n3) begin
+  always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
       f <= {DSIZE{1'b1}};
     end else begin
