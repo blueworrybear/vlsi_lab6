@@ -4,7 +4,8 @@ module stimulus;
   parameter OPSIZE = `OPSIZE;
   parameter cyc = `CYC;
   
-  wire [DSIZE-1:0] F_o,N_o,C_o,V_o,Z_o;
+  wire [DSIZE-1:0] F_o;
+  wire N_o,C_o,V_o,Z_o;
   reg [DSIZE-1:0] data_a, data_b;
   reg [OPSIZE-1:0] op;
   reg rst_n, clk;
