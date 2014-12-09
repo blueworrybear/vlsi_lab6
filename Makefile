@@ -18,10 +18,15 @@ DBFILE	= *.fsdb *.vcd *.bak *.mr *.syn *.pvl *.sdf.X novas* *.svf *~
 RM		= -rm -rf
 all :: sim
 sim :
-		@if [ '$(PATTERN)' == '' ] ; then \
-			echo -e '\033[31m Warning: Make sure you have load all files required.\033[0m'; \
+		@if [ '$(P)' == '' ] ; then \
+			echo -e '\033[31m Warning: Make sure you have load pattern.dat.\033[0m'; \
 		else \
-			cp $(PATTERN) ./pattern.dat ; \
+			cp $(P) ./pattern.dat ; \
+		fi
+		@if [ '$(G)' == '' ] ; then \
+			echo -e '\033[31m Warning: Make sure you have load gold.dat.\033[0m'; \
+		else \
+			cp $(G) ./gold.dat ; \
 		fi
 		@if [ '$(DEBUG)' == '' ] ; then \
 			echo -e '\033[31m Debug Level 0. \033[0m'; \
@@ -32,10 +37,15 @@ sim :
 syn :
 		@dc_shell-t -f fifo.tcl
 simg :
-		@if [ '$(PATTERN)' == '' ] ; then \
-			echo -e '\033[31m Warning: Make sure you have load all files required.\033[0m'; \
-    	else \
-       		cp $(PATTERN) ./pattern.dat ; \
+		@if [ '$(P)' == '' ] ; then \
+			echo -e '\033[31m Warning: Make sure you have load pattern.dat.\033[0m'; \
+		else \
+			cp $(P) ./pattern.dat ; \
+		fi
+		@if [ '$(G)' == '' ] ; then \
+			echo -e '\033[31m Warning: Make sure you have load gold.dat.\033[0m'; \
+		else \
+			cp $(G) ./gold.dat ; \
 		fi
 		@$(VLOG) $(SRC_S) $(CellLib) $(VLOGARG) $(TSCALE) +define+SYN
 clean :

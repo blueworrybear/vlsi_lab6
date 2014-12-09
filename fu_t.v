@@ -3,7 +3,14 @@ module stimulus;
   parameter DSIZE = `DSIZE;
   parameter OPSIZE = `OPSIZE;
   parameter cyc = `CYC;
+  parameter mem_size = `MEMSIZE;
   
+  //variables for pattern
+  reg [OPSIZE+DSIZE+DSIZE-1:0] vector [0:mem_size-1];
+  reg [4+DSIZE-1:0] respond [0:mem_size-1];
+  reg error;
+  integer index;
+  //signals for fu module
   wire [DSIZE-1:0] F_o;
   wire N_o,C_o,V_o,Z_o;
   reg [DSIZE-1:0] data_a, data_b;
@@ -25,6 +32,18 @@ module stimulus;
   
   always #(cyc/2) clk = ~clk;
   
+  always @(posedge clk or negedge rst_n) begin
+    if(!rst_n) begin
+      error = 1'b0;
+    end else begin
+      if (respond [index] == {Z_o,N_o,C_o,V_o,F_o}) begin
+        error = 1'b0;
+      end else begin
+        error = 1'b1;
+      end
+    end
+  end
+  
   initial begin
     `ifdef SYN
       $sdf_annotate("fu_syn.sdf", fifo1);
@@ -38,6 +57,9 @@ module stimulus;
   end
   
   initial begin
+    $readmemb("pattern.dat",vector);
+    $readmemb("gold.dat",respond);
+    
     rst_n = 0;
     clk = 1;
     data_a = 16'b0; 
@@ -45,12 +67,20 @@ module stimulus;
     op = 5'b0;
     
     #(cyc/2) rst_n = 1;
-    #(cyc) data_a = 16'b1; data_b = 16'b1; op = 5'b00100;
-    #(cyc) data_a = 16'b10; data_b = 16'b1; op = 5'b00100;
-    #(cyc) data_a = 16'b0111111111111111; data_b = 16'b1; op = 5'b00100;
-    #(cyc) data_a = 16'b1111111111111111; data_b = 16'b1111111111111110; op = 5'b00100;
 
+    for(index = 0; index < mem_size; index = index +1) begin
+      instruction(vector[index]);
+    end
+    
     #(cyc*8);    
     $finish;
   end
+  
+  task instruction;
+    input [OPSIZE+DSIZE+DSIZE-1:0] ins;
+    begin
+      #(cyc) op = ins[OPSIZE+DSIZE+DSIZE-1:DSIZE+DSIZE]; data_a = ins[DSIZE+DSIZE-1:DSIZE]; data_b = [DSIZE-1:0];  
+    end
+  endtask
+    
 endmodule
