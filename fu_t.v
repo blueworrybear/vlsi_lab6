@@ -4,13 +4,17 @@ module stimulus;
   parameter OPSIZE = `OPSIZE;
   parameter cyc = `CYC;
   
-  wire [DSIZE-1:0] f;
+  wire [DSIZE-1:0] F_o,N_o,C_o,V_o,Z_o;
   reg [DSIZE-1:0] data_a, data_b;
   reg [OPSIZE-1:0] op;
   reg rst_n, clk;
   
   fu fu(
-  	.f(f),
+  	.F_o(F_o),
+  	.N_o(N_o),
+  	.C_o(C_o),
+  	.V_o(V_o),
+  	.Z_o(Z_o),
   	.data_a(data_a),
   	.data_b(data_b),
   	.op(op),

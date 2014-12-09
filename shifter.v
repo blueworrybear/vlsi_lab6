@@ -2,23 +2,11 @@ module shifter #(parameter OPSIZE = 2, parameter DSIZE = 16)(
   output reg [DSIZE-1:0] f,
   input [DSIZE-1:0] data_a,
   input [DSIZE-1:0] data_b,
-  input [OPSIZE-1:0] op,
-  input rst_n,
-  input clk
+  input [OPSIZE-1:0] op
 );
-
- reg [OPSIZE-1:0] opcode;
-
-  always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-      opcode <= { OPSIZE{1'b0} };
-    end else begin
-      opcode <= op;
-    end
-  end
   
   always @(*) begin
-    case(opcode)
+    case(op)
       2'b00:
       begin
         f <= data_a >> data_b;
