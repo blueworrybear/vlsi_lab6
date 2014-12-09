@@ -79,7 +79,7 @@ module stimulus;
   task instruction;
     input [OPSIZE+DSIZE+DSIZE-1:0] ins;
     begin
-      #(cyc) op = ins[OPSIZE+DSIZE+DSIZE-1:DSIZE+DSIZE]; data_a = ins[DSIZE+DSIZE-1:DSIZE]; data_b = [DSIZE-1:0];  
+      #(cyc) op = ins[OPSIZE+DSIZE+DSIZE-1:DSIZE+DSIZE]; data_a = ins[DSIZE+DSIZE-1:DSIZE]; data_b = ins[DSIZE-1:0];  
     end
   endtask
     
