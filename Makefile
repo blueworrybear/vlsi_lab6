@@ -1,6 +1,5 @@
 VLOG	= ncverilog
 SRC		= header.h \
-          sync_w2r.v \
           alu.v \
           shifter.v \
           fu.v \
