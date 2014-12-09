@@ -8,7 +8,7 @@ module alu #(parameter OPSIZE = 4, parameter DSIZE = 16)(
   input [DSIZE-1:0] data_b
 );
   assign c = f[DSIZE-1] & ~(data_a[DSIZE-1] | data_b[DSIZE-1]) & ~op[OPSIZE-1];
-  assign v = f[DSIZE-1] ^ ~(data_a[DSIZE-1] ^ data_b[DSIZE-1]) & ~op[OPSIZE-1];
+  assign v = ~(f[DSIZE-1] ^ ~(data_a[DSIZE-1] ^ data_b[DSIZE-1])) & ~op[OPSIZE-1];
   assign n = f[DSIZE-1] & ~v & ~op[OPSIZE-1];
   
   always @(*) begin
