@@ -2,3 +2,5 @@ INCA_libs/
 *.fsdb
 *.key
 *.log
+*.rc
+*.conf
