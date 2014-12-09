@@ -7,8 +7,8 @@ module fu #(parameter OPSIZE = 5, parameter DSIZE = 16)(
   input clk
 );
 
-wire [DSIZE-1:0] f_alu, f_shifter;
-
+  wire [DSIZE-1:0] f_alu, f_shifter;
+  
   alu alu(
   	.f(f_alu),
   	.op(op[OPSIZE-2:0]),
