@@ -1,0 +1,4 @@
+INCA_libs/
+*.fsdb
+*.key
+*.log
