@@ -7,20 +7,10 @@ module alu #(parameter OPSIZE = 4, parameter DSIZE = 16)(
   input clk
 );
   
-  reg [OPSIZE-1:0] opcode;
-  
-  always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-      opcode <= {OPSIZE{1'b0}};
-    end else begin
-      opcode <= op;
-    end
-  end
-  
   always @(*) begin
-    if (opcode[OPSIZE-1] == 1'b0) begin
+    if (op[OPSIZE-1] == 1'b0) begin
       //Arithmec operation
-      case (opcode[OPSIZE-2:0])
+      case (op[OPSIZE-2:0])
         3'b000:
         begin
           f = data_a;
@@ -55,7 +45,7 @@ module alu #(parameter OPSIZE = 4, parameter DSIZE = 16)(
         end
       endcase
     end else begin
-      case (opcode[OPSIZE-3:0])
+      case (op[OPSIZE-3:0])
         2'b00:
         begin
           f = data_a & data_b;
