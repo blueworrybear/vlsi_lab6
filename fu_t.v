@@ -44,12 +44,12 @@ module stimulus;
       V_r = 1'b0;
       F_r = {DSIZE{1'b0}};
     end else begin
-      #(delay*2);
       Z_r = respond [index-1][4+DSIZE-1];
       N_r = respond [index-1][3+DSIZE-1];
       C_r = respond [index-1][2+DSIZE-1];
       V_r = respond [index-1][1+DSIZE-1];
       F_r = respond [index-1][DSIZE-1:0];
+      #(delay*2);
       if (respond [index-1] == {Z_o,N_o,C_o,V_o,F_o}) begin
         error = 1'b0;
       end else begin
