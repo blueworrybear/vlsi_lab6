@@ -3,6 +3,7 @@ module stimulus;
   parameter DSIZE = `DSIZE;
   parameter OPSIZE = `OPSIZE;
   parameter cyc = `CYC;
+  parameter delay = 1;
   parameter mem_size = `MEMSIZE;
   
   //variables for pattern
@@ -36,6 +37,7 @@ module stimulus;
     if(!rst_n) begin
       error = 1'b0;
     end else begin
+      #(delay);
       if (respond [index-1] == {Z_o,N_o,C_o,V_o,F_o}) begin
         error = 1'b0;
       end else begin
