@@ -51,7 +51,7 @@ module alu #(parameter OPSIZE = 4, parameter DSIZE = 16)(
         end
         3'b111:
         begin
-          {co,vo,f} = da + {1'b0,~{{DSIZE{1'b0}},1'b1}};
+          {co,vo,f} = da + {1'b0,~{{DSIZE{1'b0}},1'b1}} + 1'b1;
         end
       endcase
     end else begin
