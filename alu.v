@@ -7,14 +7,14 @@ module alu #(parameter OPSIZE = 4, parameter DSIZE = 16)(
   input [DSIZE-1:0] data_a,
   input [DSIZE-1:0] data_b
 );
-  reg co;
-  wire [DSIZE:0] da,db;
+  reg co,vo;
+  wire [DSIZE+1:0] da,db;
   
-  assign da = {data_a[DSIZE-1],data_a};
-  assign db = {data_b[DSIZE-1],data_b};
+  assign da = {1'b0,data_a[DSIZE-1],data_a};
+  assign db = {1'b0,data_b[DSIZE-1],data_b};
   
-  assign c = co & v;
-  assign v = (co ^ f[DSIZE-1]) & ~op[OPSIZE-1];
+  assign c = co;
+  assign v = vo ^ f[DSIZE-1];
   assign n = f[DSIZE-1] & ~op[OPSIZE-1];
   
   always @(*) begin
@@ -23,39 +23,40 @@ module alu #(parameter OPSIZE = 4, parameter DSIZE = 16)(
       case (op[OPSIZE-2:0])
         3'b000:
         begin
-          {co,f} = da;
+          {co,vo,f} = da;
         end
         3'b001:
         begin
-          {co,f} = da +1'b1;
+          {co,vo,f} = da +1'b1;
         end
         3'b010:
         begin
-          {co,f} = da + ~db;
+          {co,vo,f} = da + ~db;
         end
         3'b011:
         begin
-          {co,f} = da + ~db +1;
+          {co,vo,f} = da + ~db +1;
         end
         3'b100:
         begin
-          {co,f} = da + db;
+          {co,vo,f} = da + db;
         end
         3'b101:
         begin
-          {co,f} = da + db +1'b1;
+          {co,vo,f} = da + db +1'b1;
         end
         3'b110:
         begin
-          {co,f} = db;
+          {co,vo,f} = db;
         end
         3'b111:
         begin
-          {co,f} = da -1'b1;
+          {co,vo,f} = da -1'b1;
         end
       endcase
     end else begin
       co = 1'b0;
+      vo = 1'b0;
       case (op[OPSIZE-3:0])
         2'b00:
         begin
