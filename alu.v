@@ -15,7 +15,7 @@ module alu #(parameter OPSIZE = 4, parameter DSIZE = 16)(
   
   assign c = co & v;
   assign v = (co ^ f[DSIZE-1]) & ~op[OPSIZE-1];
-  assign n = co & ~v;
+  assign n = co;
   
   always @(*) begin
     if (op[OPSIZE-1] == 1'b0) begin
