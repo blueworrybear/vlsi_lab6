@@ -15,7 +15,7 @@ set_clock_uncertainty 0.4 [get_clocks {clk}]
 set_clock_latency 0.8 -max [get_clocks {clk}]
 
 #input delay
-set_input_delay 2 -clock clk -min [get_ports {data_a[*] data_b[8] op[*]}]
+set_input_delay 2 -clock clk -min [get_ports {data_a[*] data_b[*] op[*]}]
 
 #output delay
 set_output_delay 4.4 -clock clk -min [all_outputs]
