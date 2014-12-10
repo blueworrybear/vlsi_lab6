@@ -32,5 +32,5 @@ set_drive 6.48623 [get_ports {op[*]}]
 set_load -min -pin_load 1 [get_ports {*_o}]
 
 #dont touch
-set_dont_touch_network [list clk, rst_n]
-set_drive 0 [list clk, rst_n]
+set_dont_touch_network [get_ports {clk rst_n}]
+set_drive 0 [get_ports {clk rst_n}]

@@ -22,4 +22,4 @@ report_timing > timing.rpt
 report_timing -nets -transition_time -capacitance >> timing.rpt
 #remove_design -all
 #remove_lib -all
-
+exit
