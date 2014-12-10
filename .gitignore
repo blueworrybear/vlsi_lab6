@@ -4,3 +4,7 @@ INCA_libs/
 *.log
 *.rc
 *.conf
+lab07/
+nWaveLog/
+*.dat
+

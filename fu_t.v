@@ -61,12 +61,12 @@ module stimulus;
     $readmemb("gold.dat",respond);
     
     rst_n = 0;
-    clk = 1;
+    clk = 0;
     data_a = 16'b0; 
     data_b = 16'b0;
     op = 5'b0;
     
-    #(cyc/2) rst_n = 1;
+    #(cyc) rst_n = 1;
 
     for(index = 0; index < mem_size; index = index +1) begin
       instruction(vector[index]);
