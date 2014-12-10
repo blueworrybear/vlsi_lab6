@@ -31,11 +31,11 @@ module alu #(parameter OPSIZE = 4, parameter DSIZE = 16)(
         end
         3'b010:
         begin
-          {co,vo,f} = da + ~db;
+          {co,vo,f} = da + {1'b0,~db[DSIZE:0]};
         end
         3'b011:
         begin
-          {co,vo,f} = da + ~db +1;
+          {co,vo,f} = da + {1'b0,~db[DSIZE:0]} +1;
         end
         3'b100:
         begin
