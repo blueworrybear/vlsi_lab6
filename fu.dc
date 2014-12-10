@@ -1,0 +1,36 @@
+# Set the current_design #
+current_design fu
+link
+
+set_units -time ns -resistance kOhm -capacitance pF -power mW -voltage V -current mA
+set_operating_conditions -min fast -max slow
+set_wire_load_mode "segmented"
+
+#create clock
+create_clock -period 8 -waveform {0 4} [get_ports {clk}]
+set_fix_hold [get_clocks clk]
+
+#clock skew
+set_clock_uncertainty 0.4 [get_clocks {clk}]
+set_clock_latency 0.8 -max [get_clocks {clk}]
+
+#input delay
+set_input_delay 2 -clock clk -min [get_ports {data_a[*] data_b[8] op[*]}]
+
+#output delay
+set_output_delay 4.4 -clock clk -min [all_outputs]
+
+#combinational delay
+set_max_delay 8 -to [get_ports {*_o}] -from [get_ports {data_a[*] data_b[*] op[*]}]
+
+#drive
+set_drive 6.48623 [get_ports {data_a[*]}]
+set_drive 6.48623 [get_ports {data_b[*]}]
+set_drive 6.48623 [get_ports {op[*]}]
+
+#load
+set_load -min -pin_load 1 [get_ports {*_o}]
+
+#dont touch
+set_dont_touch_network [list clk, rst_n]
+set_drive 0 [list clk, rst_n]
