@@ -4,7 +4,8 @@ SRC		= header.v \
           shifter.v \
           fu.v \
 		  fu_t.v
-SRC_S	= fu_syn.v \
+SRC_S	= header.v \
+		  fu_syn.v \
           fu_t.v 
 VLOGARG	= +access+r
 CellLib = -v /theda21_2/CBDK_IC_Contest/cur/Verilog/tsmc13.v
