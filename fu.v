@@ -26,7 +26,6 @@ module fu #(parameter OPSIZE = 5, parameter DSIZE = 16)(
   
   shifter shifter(
   	.f(f_shifter),
-  	.data_a(data_a),
   	.data_b(data_b),
   	.op(op[OPSIZE-4:0])
   );
