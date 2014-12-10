@@ -60,7 +60,7 @@ module stimulus;
   
   initial begin
     `ifdef SYN
-      $sdf_annotate("fu_syn.sdf", fifo1);
+      $sdf_annotate("fu_syn.sdf", fu);
       $fsdbDumpfile("fu_syn.fsdb");
     `else
       $fsdbDumpfile("fu.fsdb");
