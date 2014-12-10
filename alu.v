@@ -14,7 +14,7 @@ module alu #(parameter OPSIZE = 4, parameter DSIZE = 16)(
   assign db = {1'b0,data_b[DSIZE-1],data_b};
   
   assign c = co;
-  assign v = vo ^ f[DSIZE-1];
+  assign v = (vo ^ f[DSIZE-1]) & ~op[OPSIZE-1];
   assign n = f[DSIZE-1] & ~op[OPSIZE-1];
   
   always @(*) begin
