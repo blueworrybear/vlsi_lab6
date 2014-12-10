@@ -1,5 +1,5 @@
 `ifndef CYC
-  `define CYC 40
+  `define CYC 8
 `endif
 
 `ifndef DSIZE

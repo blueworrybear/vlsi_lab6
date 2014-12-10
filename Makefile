@@ -4,8 +4,8 @@ SRC		= header.v \
           shifter.v \
           fu.v \
 		  fu_t.v
-SRC_S	= fifo_syn.v \
-          fifo_t.v 
+SRC_S	= fu_syn.v \
+          fu_t.v 
 VLOGARG	= +access+r
 CellLib = -v /theda21_2/CBDK_IC_Contest/cur/Verilog/tsmc13.v
 TSCALE = +nctimescale+1ns/1ps
@@ -35,7 +35,7 @@ sim :
 			$(VLOG) $(SRC) $(VLOGARG) +DEBUG=$(DEBUG); \
 		fi 
 syn :
-		@dc_shell-t -f fifo.tcl
+		@dc_shell-t -f fu.tcl
 simg :
 		@if [ '$(P)' == '' ] ; then \
 			echo -e '\033[31m Warning: Make sure you have load pattern.dat.\033[0m'; \
