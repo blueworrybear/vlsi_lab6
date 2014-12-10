@@ -13,14 +13,14 @@ write_sdf -version 1.0 -context verilog fu.sdf
 #clock report
 read_sdf fu.sdf
 report_clock > clock.rpt
-report_port -input_delay >> clock.rpt
-report_port -output_delay >> clock.rpt
-check_timing >> clock.rpt
+#report_port -input_delay >> clock.rpt
+#report_port -output_delay >> clock.rpt
+#check_timing >> clock.rpt
 
 #timing report
-report_constraint -all_violations > timing.rpt
+#report_constraint -all_violations > timing.rpt
 report_timing >> timing.rpt
-report_timing -nets -transition_time -capacitance >> timing.rpt
-remove_design -all
-remove_lib -all
+#report_timing -nets -transition_time -capacitance >> timing.rpt
+#remove_design -all
+#remove_lib -all
 exit
