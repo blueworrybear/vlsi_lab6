@@ -9,6 +9,8 @@ module stimulus;
   //variables for pattern
   reg [OPSIZE+DSIZE+DSIZE-1:0] vector [0:mem_size-1];
   reg [4+DSIZE-1:0] respond [0:mem_size-1];
+  reg [DSIZE-1:0] F_r;
+  reg N_r,C_r,V_r,Z_r;
   reg error;
   integer index;
   //signals for fu module
@@ -36,8 +38,18 @@ module stimulus;
   always @(posedge clk or negedge rst_n) begin
     if(!rst_n) begin
       error = 1'b0;
+      Z_r = 1'b0;
+      N_r = 1'b0;
+      C_r = 1'b0;
+      V_r = 1'b0;
+      F_r = {DSIZE{1'b0}};
     end else begin
       #(delay*2);
+      Z_r = respond [index-1][DSIZE-1];
+      N_r = respond [index-1][DSIZE-2];
+      C_r = respond [index-1][DSIZE-3];
+      V_r = respond [index-1][DSIZE-4];
+      F_r = respond [index-1][DSIZE-5:0];
       if (respond [index-1] == {Z_o,N_o,C_o,V_o,F_o}) begin
         error = 1'b0;
       end else begin
