@@ -38,7 +38,7 @@ module stimulus;
       error = 1'b0;
     end else begin
       #(delay*2);
-      if (respond [index] == {Z_o,N_o,C_o,V_o,F_o}) begin
+      if (respond [index-1] == {Z_o,N_o,C_o,V_o,F_o}) begin
         error = 1'b0;
       end else begin
         error = 1'b1;
