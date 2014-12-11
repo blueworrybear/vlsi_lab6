@@ -49,7 +49,7 @@ module stimulus;
       C_r = respond [index-1][2+DSIZE-1];
       V_r = respond [index-1][1+DSIZE-1];
       F_r = respond [index-1][DSIZE-1:0];
-      #(delay*2);
+      #(delay);
       if (respond [index-1] == {Z_o,N_o,C_o,V_o,F_o}) begin
         error = 1'b0;
       end else begin
@@ -60,7 +60,7 @@ module stimulus;
   
   initial begin
     `ifdef SYN
-      $sdf_annotate("fu_syn.sdf", fu);
+      $sdf_annotate("fu.sdf", fu);
       $fsdbDumpfile("fu_syn.fsdb");
     `else
       $fsdbDumpfile("fu.fsdb");

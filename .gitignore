@@ -7,4 +7,20 @@ INCA_libs/
 lab07/
 nWaveLog/
 *.dat
+*.fsdb
+*.vcd
+*.bak
+*.mr
+*.syn
+*.pvl
+*.sdf
+novas*
+*.svf
+*~
+*.ddc
+*.rpt
+*.X
+.nfs*
+.synopsys_dc.setup
+fu_syn.v
 
