@@ -63,6 +63,4 @@ module fu #(parameter OPSIZE = 5, parameter DSIZE = 16)(
       Z_o = 1'b0;
     end
   end
-  
-
 endmodule
