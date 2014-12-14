@@ -74,8 +74,6 @@ module stimulus;
     $readmemb("gold.dat",respond);
     
     clk = 0;
-    
-    #(cyc/2)
 
     for(index = 0; index < mem_size; index = index +1) begin
       instruction(vector[index]);
