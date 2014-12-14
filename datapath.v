@@ -12,7 +12,7 @@ module datapath #(parameter OPSIZE = 5, parameter DSIZE = 16)(
   wire [DSIZE-1:0] f_alu, f_shifter;
   wire n,c,v;
   
-  alu alu(
+  alu #(.DSIZE(DSIZE)) alu(
     .f(f_alu),
     .n(n),
     .c(c),
@@ -22,7 +22,7 @@ module datapath #(parameter OPSIZE = 5, parameter DSIZE = 16)(
     .data_b(data_b)
   );
   
-  shifter shifter(
+  shifter #(.DSIZE(DSIZE)) shifter(
     .f(f_shifter),
     .data_b(data_b),
     .op(op[OPSIZE-4:0])
