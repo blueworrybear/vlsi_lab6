@@ -9,19 +9,19 @@ module barrel_shifter#(parameter DSIZE = 64, parameter ASIZE = 6)(
     case(mode)
       2'b00:
       begin
-        out <= in << amount;
+        out <= in << {1'b0,amount};
       end
       2'b01:
       begin
-        out <= in >> amount;
+        out <= in >> {1'b0,amount};
       end
       2'b10:
       begin
-        out <= in << {1'b0,amount} | in >> {1'b0,~amount}; 
+        out <= in << {1'b0,amount} | in >> ({1'b0,~amount}+1'b1); 
       end
       2'b11:
       begin
-        out <= in >> {1'b0,amount} | in << {1'b0,~amount};
+        out <= in >> {1'b0,amount} | in << ({1'b0,~amount}+1'b1);
       end
     endcase
   end
