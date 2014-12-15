@@ -62,6 +62,8 @@ sim2 :
 		fi 
 syn :
 		@dc_shell-t -f fu.tcl
+syn2 :
+		@dc_shell-t -f fu2.tcl
 simg :
 		@if [ '$(P)' == '' ] ; then \
 			echo -e '\033[31m Warning: Make sure you have load pattern.dat.\033[0m'; \
