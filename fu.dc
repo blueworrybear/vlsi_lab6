@@ -23,6 +23,10 @@ set_output_delay 4.4 -clock clk -min [all_outputs]
 #combinational delay
 set_max_delay 8 -to [get_ports {*_o}] -from [get_ports {data_a[*] data_b[*] op[*]}]
 
+#Area
+ungroup -flatten -all
+set_max_area 0 
+
 #drive
 set_drive 6.48623 [get_ports {data_a[*]}]
 set_drive 6.48623 [get_ports {data_b[*]}]

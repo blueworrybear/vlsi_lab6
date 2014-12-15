@@ -1,6 +1,6 @@
 source .synopsys_dc.setup
 
-analyze -format verilog {alu.v shifter.v datapath.v barrel_shifer.v fu2.v}
+analyze -format verilog {alu.v shifter.v datapath.v barrel_shifter.v fu2.v}
 elaborate fu2 -architecture verilog -library DEFAULT
 
 source fu2.dc

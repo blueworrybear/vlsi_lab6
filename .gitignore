@@ -23,4 +23,6 @@ novas*
 .nfs*
 .synopsys_dc.setup
 fu_syn.v
+fu2_syn.v
+*.alias
 

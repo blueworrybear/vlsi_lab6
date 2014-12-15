@@ -18,8 +18,11 @@ report_clock > clock.rpt
 #check_timing >> clock.rpt
 
 #timing report
-report_timing > timing.rpt
+report_timing -max_paths 10 > timing.rpt
 report_timing -nets -transition_time -capacitance >> timing.rpt
+
+report_area -nosplit > area.rpt
+
 #remove_design -all
 #remove_lib -all
 exit
