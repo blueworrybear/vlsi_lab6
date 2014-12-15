@@ -16,11 +16,13 @@ module shifter #(parameter OPSIZE = 2, parameter DSIZE = 16)(
       end
       2'b10:
       begin
-        f <= data_b >> 1'b1 | data_b << (DSIZE-1);
+        //f <= data_b >> 1'b1 | data_b << (DSIZE-1);
+        f <= {data_b[0],data_b[DSIZE-1:1]};
       end
       2'b11:
       begin
-        f <= data_b << 1'b1 | data_b >> (DSIZE-1);
+        //f <= data_b << 1'b1 | data_b >> (DSIZE-1);
+        f <= {data_b[DSIZE-2:0],data_b[DSIZE-1]};
       end
     endcase
   end
