@@ -13,8 +13,8 @@ module barrel_shifter#(parameter DSIZE = 64, parameter ASIZE = 6)(
       end
       2'b01:
       begin
-        //out <= in >> {1'b0,amount} | {DSIZE{1'b1}} << ({1'b0,~amount}+1'b1);
-        out <= in >> {1'b0,amount};
+        out <= in >> {1'b0,amount} | {DSIZE{1'b1}} << ({1'b0,~amount}+1'b1);
+        //out <= in >> {1'b0,amount};
       end
       2'b10:
       begin
