@@ -3,7 +3,7 @@ module stimulus;
   parameter DSIZE = 64;
   parameter OPSIZE = 5;
   parameter ASIZE = 6;
-  parameter cyc = 10;
+  parameter cyc = 14;
   parameter delay = 1;
   parameter mem_size = 200;
   
@@ -59,7 +59,7 @@ module stimulus;
   
   initial begin
     `ifdef SYN
-      $sdf_annotate("fu2.sdf", fu);
+      $sdf_annotate("fu2.sdf", fu2);
       $fsdbDumpfile("fu2_syn.fsdb");
     `else
       $fsdbDumpfile("fu2.fsdb");
