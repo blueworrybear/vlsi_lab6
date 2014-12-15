@@ -1,4 +1,4 @@
-module fu2#(parameter DSIZE = 64, parameter OPSIZE = 5, parameter ASIZE = 6)(
+module fu2 #(parameter DSIZE = 64, parameter OPSIZE = 5, parameter ASIZE = 6)(
   output reg [DSIZE-1:0] OUT,
   output reg Z,
   output reg R,
