@@ -4,23 +4,28 @@ module shifter #(parameter OPSIZE = 2, parameter DSIZE = 16)(
   input [OPSIZE-1:0] op
 );
   
+  wire [DSIZE-1:0] sl,sr;
+  
+  assign sl = data_b << 1'b1;
+  assign sr = data_b >> 1'b1;
+  
   always @(*) begin
     case(op)
       2'b00:
       begin
-        f <= data_b >> 1'b1;
+        f <= sr;
       end
       2'b01:
       begin
-        f <= data_b << 1'b1;
+        f <= sl;
       end
       2'b10:
       begin
-        f <= data_b >> 1'b1 | data_b << (DSIZE-1);
+        f <= sr | data_b << (DSIZE-1);
       end
       2'b11:
       begin
-        f <= data_b << 1'b1 | data_b >> (DSIZE-1);
+        f <= sl | data_b >> (DSIZE-1);
       end
     endcase
   end
